@@ -35,3 +35,17 @@ Main data QA/QC focuses on the following:
 - fill timestamp gaps for better illustration on data exploration. Use Null value for other columns when timestamp gaps encountered. (group by Turbine ID).
 
 See file : [data clean and check tools](./src/data_checker_clean.py)
+
+## 2-performance-baseline--anomaly-detection
+
+The power generation performance based detection is based on 2 columns: "Grd_Prod_Pwr_Avg" and "Grd_Prod_PsblePwr_Avg". Which are deam the "Actual power produced to grid" and "expected power from all turbine operation specs and measured wind speeds".
+The detection method calculates a difference of "Grd_Prod_Pwr_Avg" and "Grd_Prod_PsblePwr_Avg" on each turbine through timestamps.
+Then, the logic used to mark the anomaly is as below:
+employs a two-stage sequential approach:
+
+1. **Stage 1: Absolute Threshold Check**
+   - Flag records where `|Grd_Prod_Pwr_Avg-Grd_Prod_PsblePwr_Avg| > threshold`
+   
+2. **Stage 2: Cross-Turbine Deviation Check**
+   - For records passing Stage 1, compare against median absolute deviation (MAD) across all turbines at the same timestamp
+   - Flag if deviation exceeds threshold (e.g., 2.5 MAD)
