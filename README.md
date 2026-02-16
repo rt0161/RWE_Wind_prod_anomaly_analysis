@@ -21,3 +21,4 @@ This repository contains a comprehensive data quality assessment, performance ba
 ---
 
 ## Project Structure
+Main project expands on the jupyter notebook used in :  [data exploration notebook](./jupyter_explore/data_exploration.ipynb)
