@@ -10,15 +10,18 @@ This repository contains a comprehensive data quality assessment, performance ba
 
 - [Project Structure](#project-structure)
 - [Analysis Questions](#analysis-questions)
-  - [1. Performance Baseline & Anomaly Detection](#1-performance-baseline--anomaly-detection)
-  - [2. Performance Baseline & Anomaly Detection](#1-performance-baseline--anomaly-detection)
-  - [3. Data-Driven Root Cause Hypotheses](#2-data-driven-root-cause-hypotheses)
-  - [4. Monitoring Proposal for Azure/Databricks](#3-monitoring-proposal-for-azuredatabricks)
-  - [5. Code Quality & Documentation](#4-code-quality--documentation)
-  - [6. Presentation](#5-presentation)
+  - [1. Data QA/QC](#Data QA/QC)
+  - [2. Performance Baseline & Anomaly Detection](#2-performance-baseline--anomaly-detection)
+  - [3. Data-Driven Root Cause Hypotheses](#3-data-driven-root-cause-hypotheses)
+  - [4. Monitoring Proposal for Azure/Databricks](#4-monitoring-proposal-for-azuredatabricks)
+  - [5. Code Quality & Documentation](#5-code-quality--documentation)
+  - [6. Presentation](#6-presentation)
 
 
 ---
 
 ## Project Structure
 Main project expands on the jupyter notebook used in :  [data exploration notebook](./jupyter_explore/data_exploration.ipynb)
+This project aim to use a small dataset of 1 wind farm operation in a short timeframe, to illustrate how candidate walk through process of building a power generation anomaly analysis.
+
+Tool functions are located at: [data processing, analysis and illustration tools](./src/)
