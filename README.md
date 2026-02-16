@@ -10,7 +10,7 @@ This repository contains a comprehensive data quality assessment, performance ba
 
 - [Project Structure](#project-structure)
 - [Analysis Questions](#analysis-questions)
-  - [1. Data QA/QC](#1-Data QA/QC)
+  - [1. Data QA/QC](#1-Data--QA/QC)
   - [2. Performance Baseline & Anomaly Detection](#2-performance-baseline--anomaly-detection)
   - [3. Data-Driven Root Cause Hypotheses](#3-data-driven-root-cause-hypotheses)
   - [4. Monitoring Proposal for Azure/Databricks](#4-monitoring-proposal-for-azuredatabricks)
