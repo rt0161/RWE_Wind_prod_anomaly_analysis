@@ -49,3 +49,6 @@ employs a two-stage sequential approach:
 2. **Stage 2: Cross-Turbine Deviation Check**
    - For records passing Stage 1, compare against median absolute deviation (MAD) across all turbines at the same timestamp
    - Flag if deviation exceeds threshold (e.g., 2.5 MAD)
+
+Based on data exploration, the difference between Actual and Expected power generated can be indicative of the anomalies in asset power generations:
+![Power difference on Selected Turbines](figures/diff_pwr_selectedTurb.png)
