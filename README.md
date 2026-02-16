@@ -25,3 +25,12 @@ Main project expands on the jupyter notebook used in :  [data exploration notebo
 This project aim to use a small dataset of 1 wind farm operation in a short timeframe, to illustrate how candidate walk through process of building a power generation anomaly analysis.
 
 Tool functions are located at: [data processing, analysis and illustration tools](./src/)
+
+## 1-Data--QA/QC
+
+Main data QA/QC focuses on the following:
+- read in and ensure timestamp reads as datetime format for proper timeseries analysis later.
+- ensure data types complies to each column unit types and values match.
+- assess total time span, missing timestamp samples and remove duplicates (use first sample).
+- fill timestamp gaps for better illustration on data exploration. Use Null value for other columns when timestamp gaps encountered. (group by Turbine ID).
+
