@@ -34,3 +34,4 @@ Main data QA/QC focuses on the following:
 - assess total time span, missing timestamp samples and remove duplicates (use first sample).
 - fill timestamp gaps for better illustration on data exploration. Use Null value for other columns when timestamp gaps encountered. (group by Turbine ID).
 
+See file : [data clean and check tools](./src/data_checker_clean.py)
