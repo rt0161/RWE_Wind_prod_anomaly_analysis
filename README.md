@@ -52,3 +52,6 @@ employs a two-stage sequential approach:
 
 Based on data exploration, the difference between Actual and Expected power generated can be indicative of the anomalies in asset power generations:
 ![Power difference on Selected Turbines](figures/diff_pwr_selectedTurb.png)
+
+Using the difference, on each turbine and each timeseries during the time span, the detection operate on the logic described above to mark the anomalies.
+![Detection marked on Seleted Turbines](figures/anomaly_detect_diffpwr.png)
