@@ -72,7 +72,7 @@ Whilst in the step of time gaps filling and checks, I had fill null to the missi
 ## 4-monitoring-proposal-for-azuredatabricks
 
 The processing flow and detection/monitoring can be cleaned up and automated into deployed pipeline. Using below architecture:
-#### 3.1 Proposed Architecture
+#### 4.1 Proposed Architecture
 ```
 ┌─────────────────┐
 │   Data Sources  │
@@ -121,9 +121,13 @@ The processing flow and detection/monitoring can be cleaned up and automated int
 │  (Dashboards)   │ │  (Predictive)│ │  (Email/SMS)    │
 └─────────────────┘ └──────────────┘ └─────────────────┘
 ```
+#### 4.2 Proposed Dashboarding
+The automation of near-real time figures illustrated above can be deployed and published to a BI tool (e.g. Power BI, or Tableau).
+Where manual confirmation of warning can be access.
+
 
 However, the manual causual attribution done in the jupyter notebook may be only a small subset of cross refrences that shell be automated in a more advanced way. Maybe some more intelligent Machine learning model can be trained and use to inference where the causes and what probability they are. And also automatically plot out some figures for human confirmation.
-For a more data-generic approach, we may need to train a ML model, using past 2-5 years of historical data, cross refrence values below with labeled, confirmed alarms/events data. To automatically determine the cause of power generation anomalies. 
+For a more data-generic approach, we may need to train a ML model, using past 2-5 years of historical data, cross refrence values below with labeled, confirmed alarms/events data. To automatically determine the cause of power generation anomalies. (Not vialble in current dataset)
 
 possible cross reference column list:
 - overall data availability:
