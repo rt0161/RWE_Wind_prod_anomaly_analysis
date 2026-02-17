@@ -89,23 +89,23 @@ The processing flow and detection/monitoring can be cleaned up and automated int
 ┌─────────────────────────────────────┐
 │   Azure Databricks                  │
 │                                     │
-│   ┌─────────────────────────────┐  │
-│   │  Bronze Layer (Raw Data)    │  │
-│   └──────────┬──────────────────┘  │
+│   ┌─────────────────────────────┐   │
+│   │  Bronze Layer (Raw Data)    │   │
+│   └──────────┬──────────────────┘   │
 │              ▼                      │
-│   ┌─────────────────────────────┐  │
-│   │  Silver Layer (Cleaned)     │  │
-│   │  - Deduplication            │  │
-│   │  - Missing value handling   │  │
-│   │  - Timestamp validation     │  │
-│   └──────────┬──────────────────┘  │
+│   ┌─────────────────────────────┐   │
+│   │  Silver Layer (Cleaned)     │   │
+│   │  - Deduplication            │   │
+│   │  - Missing value handling   │   │
+│   │  - Timestamp validation     │   │
+│   └──────────┬──────────────────┘   │
 │              ▼                      │
-│   ┌─────────────────────────────┐  │
-│   │  Gold Layer (Analytics)     │  │
-│   │  - Performance metrics      │  │
-│   │  - Anomaly detection        │  │
-│   │  - Aggregations             │  │
-│   └─────────────────────────────┘  │
+│   ┌─────────────────────────────┐   │
+│   │  Gold Layer (Analytics)     │   │
+│   │  - Performance metrics      │   │
+│   │  - Anomaly detection        │   │
+│   │  - Aggregations             │   │
+│   └─────────────────────────────┘   │
 └────────┬────────────────────────────┘
          │
          ▼
@@ -121,3 +121,18 @@ The processing flow and detection/monitoring can be cleaned up and automated int
 │  (Dashboards)   │ │  (Predictive)│ │  (Email/SMS)    │
 └─────────────────┘ └──────────────┘ └─────────────────┘
 ```
+
+However, the manual causual attribution done in the jupyter notebook may be only a small subset of cross refrences that shell be automated in a more advanced way. Maybe some more intelligent Machine learning model can be trained and use to inference where the causes and what probability they are. And also automatically plot out some figures for human confirmation.
+For a more data-generic approach, we may need to train a ML model, using past 2-5 years of historical data, cross refrence values below with labeled, confirmed alarms/events data. To automatically determine the cause of power generation anomalies. 
+
+possible cross reference column list:
+- overall data availability:
+`HCnt_Avg_Tot` 
+- turbine health:
+`Gen_Bear_Temp_Avg`
+`HCnt_Avg_TrbOk`
+- External weather factors:
+`Amb_WindSpeed_Max`
+`Amb_Temp_Avg`
+- Grid curtailment:
+`Grd_Sets_ActPwr_ReferenceValue10Min`
