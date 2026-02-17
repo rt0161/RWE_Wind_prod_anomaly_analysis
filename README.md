@@ -55,3 +55,12 @@ Based on data exploration, the difference between Actual and Expected power gene
 
 Using the difference, on each turbine and each timeseries during the time span, the detection operate on the logic described above to mark the anomalies.
 ![Detection marked on Seleted Turbines](figures/anomaly_detect_diffpwr.png)
+
+Detection details as table can also be exported for dashboard or reporting purposes.
+
+## 3-data-driven-root-cause-hypotheses
+
+To check the reported anomalies and their possible causes, several cross referencing plotting may need manual review.
+For example, chosen a few time frames, there may either be issues from:
+- counters value missing, turbine operation not reporting. Can usually reference such period based on `HCnt_Avg_TrbOk` column.
+- curtailment by the grid, can reference `Grd_Sets_ActPwr_ReferenceValue10Min` column.
