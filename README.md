@@ -68,3 +68,56 @@ Whilst in the step of time gaps filling and checks, I had fill null to the missi
 - counters value missing, turbine operation not reporting. Can usually reference such period based on `HCnt_Avg_TrbOk` column.
 - curtailment by the grid, can reference `Grd_Sets_ActPwr_ReferenceValue10Min` column.
 - turbine male function. Can reference `Gen_Bear_Temp_Avg` column.
+
+## 4-monitoring-proposal-for-azuredatabricks
+
+The processing flow and detection/monitoring can be cleaned up and automated into deployed pipeline. Using below architecture:
+#### 3.1 Proposed Architecture
+```
+┌─────────────────┐
+│   Data Sources  │
+│  (SCADA, IoT)   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────────────────┐
+│   Azure Event Hubs / IoT Hub        │
+│   (Real-time data ingestion)        │
+└────────┬────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────┐
+│   Azure Databricks                  │
+│                                     │
+│   ┌─────────────────────────────┐  │
+│   │  Bronze Layer (Raw Data)    │  │
+│   └──────────┬──────────────────┘  │
+│              ▼                      │
+│   ┌─────────────────────────────┐  │
+│   │  Silver Layer (Cleaned)     │  │
+│   │  - Deduplication            │  │
+│   │  - Missing value handling   │  │
+│   │  - Timestamp validation     │  │
+│   └──────────┬──────────────────┘  │
+│              ▼                      │
+│   ┌─────────────────────────────┐  │
+│   │  Gold Layer (Analytics)     │  │
+│   │  - Performance metrics      │  │
+│   │  - Anomaly detection        │  │
+│   │  - Aggregations             │  │
+│   └─────────────────────────────┘  │
+└────────┬────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────┐
+│   Azure Synapse Analytics / Delta   │
+│   (Data Warehouse)                  │
+└────────┬────────────────────────────┘
+         │
+         ├──────────────────┬──────────────────┐
+         ▼                  ▼                  ▼
+┌─────────────────┐ ┌──────────────┐ ┌─────────────────┐
+│  Power BI       │ │  ML Models   │ │  Alert System   │
+│  (Dashboards)   │ │  (Predictive)│ │  (Email/SMS)    │
+└─────────────────┘ └──────────────┘ └─────────────────┘
+```
