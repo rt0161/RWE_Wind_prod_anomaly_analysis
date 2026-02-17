@@ -62,5 +62,9 @@ Detection details as table can also be exported for dashboard or reporting purpo
 
 To check the reported anomalies and their possible causes, several cross referencing plotting may need manual review.
 For example, chosen a few time frames, there may either be issues from:
+- need to first check data completeness during the high anomalies, usually just cross reference `HCnt_Avg_Tot` column.
+Whilst in the step of time gaps filling and checks, I had fill null to the missing time gaps span, we can use a fill null strategy to have a clear look on when are the times data missing occurred. And can plot by turbines to see missing peirods on each turbine.
+![Time gaps illustrator(999) high values](figures/CountersMissingTimeGaps.png) 
 - counters value missing, turbine operation not reporting. Can usually reference such period based on `HCnt_Avg_TrbOk` column.
 - curtailment by the grid, can reference `Grd_Sets_ActPwr_ReferenceValue10Min` column.
+- turbine male function. Can reference `Gen_Bear_Temp_Avg` column.
