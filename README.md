@@ -72,7 +72,7 @@ Whilst in the step of time gaps filling and checks, I had fill null to the missi
 ## 4-monitoring-proposal-for-azuredatabricks
 
 The processing flow and detection/monitoring can be cleaned up and automated into deployed pipeline. Using below architecture:
-#### 4.1 Proposed Architecture
+#### 4.1 Proposed Architecture (Databricks)
 ```
 ┌─────────────────┐
 │   Data Sources  │
@@ -121,7 +121,68 @@ The processing flow and detection/monitoring can be cleaned up and automated int
 │  (Dashboards)   │ │  (Predictive)│ │  (Email/SMS)    │
 └─────────────────┘ └──────────────┘ └─────────────────┘
 ```
-#### 4.2 Proposed Dashboarding
+#### 4.2 Proposed Architecture(Azure Cloud Services)
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           DATA SOURCES                                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                   │
+│  │ SCADA System │  │  IoT Sensors │  │ Weather APIs │                   │
+│  └──────┬───────┘  └──────-┬──────┘  └──────--┬─────┘                   │
+└─────────┼──────────────────┼──────────────────┼─────────────────────────┘
+          │                  │                  │
+          └──────────────────┴──────────────────┘
+                             │
+                    ┌────────▼────────────┐
+                    │   Azure IoT Hub /   │
+                    │   Event Hubs        │
+                    │   (Ingestion)       │
+                    └────────┬────────────┘
+                             │
+          ┌──────────────────┴──────────────────┐
+          │                                     │
+    ┌─────▼──────┐                    ┌────────▼────────┐
+    │Azure Stream│                    │  Batch Files    │
+    │ Analytics  │                    │ (Blob Storage)  │
+    │ (Real-time)│                    └────────┬────────┘
+    └─────┬──────┘                             │
+          │                                    │
+          └──────────────────┬─────────────────┘
+                             │
+                    ┌────────▼────────────────────────────┐
+                    │   Azure Data Factory (ADF)          │
+                    │   - Pipeline Orchestration          │
+                    │   - Data Flows (ETL)                │
+                    │   - Scheduling                      │
+                    └────────┬────────────────────────────┘
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+    ┌─────▼─────┐      ┌────▼─────┐      ┌────▼────-─┐
+    │  Bronze   │      │  Silver  │      │   Gold    │
+    │  Layer    │──────►  Layer   │──────►  Layer    │
+    │ (Raw)     │      │ (Cleaned)│      │(Analytics)│
+    │ Parquet/  │      │ Parquet/ │      │ Parquet/  │
+    │ Delta     │      │ Delta    │      │ Delta     │
+    └───────────┘      └──────────┘      └──────────-┘
+          │                  │                  │
+          └──────────────────┴──────────────────┘
+                             │
+                    ┌────────▼────────────────┐
+                    │  Azure Synapse          │
+                    │  Serverless SQL Pool    │
+                    │  (Query Layer)          │
+                    └────────┬────────────────┘
+                             │
+          ┌──────────────────┼──────────────────┬──────────────┐
+          │                  │                  │              │
+    ┌─────▼──────┐    ┌─────▼──────┐    ┌─────▼──────┐  ┌───▼────┐
+    │  Power BI  │    │   Logic    │    │   Azure    │  │  API   │
+    │ Dashboards │    │   Apps     │    │  Functions │  │ Mgmt   │
+    │            │    │ (Alerts)   │    │   (ML)     │  │        │
+    └────────────┘    └────────────┘    └────────────┘  └────────┘
+```
+
+#### 4.3 Proposed Dashboarding
 The automation of near-real time figures illustrated above can be deployed and published to a BI tool (e.g. Power BI, or Tableau).
 Where manual confirmation of warning can be access.
 
